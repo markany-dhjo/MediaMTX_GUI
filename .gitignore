@@ -1,0 +1,54 @@
+#
+# C# and Visual Studio/Rider/.NET Core
+#
+
+## Binaries, Build Output, and Solution Files ##
+
+# General build output directories
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+# .NET Core/5+/etc. build output
+*/netcoreapp*/
+*/net5.0/
+*/net6.0/
+*/net7.0/
+*/net8.0/
+# .NET Framework build output
+*/Debug/
+*/Release/
+
+# Intermediate files
+*.obj
+*.pdb
+*.user
+*.bak
+*.exe
+*.dll
+
+# Visual Studio files
+.vs/                   # Visual Studio 2017 onwards
+*.suo                  # Solution User Options
+*.ncb                  # IntelliSense database file
+*.opensdf              # SQLite database for IntelliSense
+*.sdf                  # Visual Studio 2010 onwards
+*.docstates
+
+# NuGet packages and caches
+[Pp]ackages/           # Old style NuGet package folder (if used)
+*.nupkg                # NuGet packages themselves
+**/*.orig              # Source control conflict files
+
+# Test results and temporary files
+TestResults/
+*.trx
+*.log
+
+# Caching and tool directories
+.idea/                 # JetBrains Rider/IntelliJ
+.tmp/
+temp/
+
+# Deployment files
+[Oo]ut/

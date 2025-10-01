@@ -1,0 +1,133 @@
+<Window x:Class="MediaMTX_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MediaMTX RTSP Streamer" Height="700" Width="800"
+        Background="#F5F5F5">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- File Selection -->
+        <Border Grid.Row="0" Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+            <StackPanel>
+                <TextBlock Text="동영상 파일 선택" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                <Border Background="#4CAF50" CornerRadius="4">
+                    <Button Name="SelectFileButton" Content="📁 파일 선택" Click="SelectFile_Click" 
+                            Height="40" Background="Transparent" Foreground="White" FontSize="14" 
+                            BorderThickness="0" Cursor="Hand"/>
+                </Border>
+                <TextBlock Name="SelectedFileText" Text="선택된 파일: 없음" Margin="0,10,0,0" 
+                           FontSize="12" Foreground="#666"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Streaming Settings -->
+        <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+            <StackPanel>
+                <TextBlock Text="스트리밍 설정" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,0,30,0">
+                        <TextBlock Text="해상도:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <ComboBox Name="ResolutionComboBox" Width="120" Height="30">
+                            <ComboBoxItem Content="원본" IsSelected="True"/>
+                            <ComboBoxItem Content="1920x1080"/>
+                            <ComboBoxItem Content="1280x720"/>
+                            <ComboBoxItem Content="854x480"/>
+                            <ComboBoxItem Content="640x360"/>
+                        </ComboBox>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="FPS:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <ComboBox Name="FpsComboBox" Width="80" Height="30">
+                            <ComboBoxItem Content="원본" IsSelected="True"/>
+                            <ComboBoxItem Content="60"/>
+                            <ComboBoxItem Content="30"/>
+                            <ComboBoxItem Content="24"/>
+                            <ComboBoxItem Content="15"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+        
+        <!-- Control Buttons and RTSP URL -->
+        <Border Grid.Row="2" Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Control Buttons -->
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="스트리밍 제어" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="#2196F3" CornerRadius="4" Margin="0,0,10,0">
+                            <Button Name="StartButton" Content="▶ 시작" Click="Start_Click" 
+                                    Height="40" Width="100" Background="Transparent" Foreground="White" 
+                                    FontSize="14" BorderThickness="0" IsEnabled="False" Cursor="Hand"/>
+                        </Border>
+                        <Border Background="#F44336" CornerRadius="4">
+                            <Button Name="StopButton" Content="⏹ 중지" Click="Stop_Click" 
+                                    Height="40" Width="100" Background="Transparent" Foreground="White" 
+                                    FontSize="14" BorderThickness="0" IsEnabled="False" Cursor="Hand"/>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+                
+                <!-- RTSP URL Display -->
+                <StackPanel Grid.Column="1" Margin="30,0,0,0" Name="RtspUrlPanel">
+                    <TextBlock Text="RTSP 스트리밍 주소" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="#E8F5E8" CornerRadius="4" Padding="15,0,15,0" Height="40" MinWidth="350">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="📡" FontSize="16" Margin="0,0,10,0"/>
+                                <TextBox Name="RtspUrlTextBox" Text="rtsp://localhost:8554/stream" 
+                                         IsReadOnly="True" Background="Transparent" BorderThickness="0"
+                                         FontFamily="Consolas" FontSize="14" VerticalAlignment="Center"
+                                         Width="250"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#4CAF50" CornerRadius="4" Margin="10,0,0,0">
+                            <Button Name="CopyUrlButton" Content="📋 복사" Click="CopyUrl_Click"
+                                    Height="40" Background="Transparent" Foreground="White" 
+                                    BorderThickness="0" Padding="10,0" Cursor="Hand"/>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+        <!-- Status -->
+        <Border Grid.Row="3" Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+            <StackPanel>
+                <TextBlock Text="상태" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                <TextBlock Name="StatusText" Text="대기 중" FontSize="14" Foreground="#666"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Log Output -->
+        <Border Grid.Row="4" Background="White" CornerRadius="8" Padding="20">
+            <StackPanel>
+                <TextBlock Text="로그" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                <ScrollViewer Height="200" VerticalScrollBarVisibility="Auto">
+                    <TextBox Name="LogTextBox" IsReadOnly="True" TextWrapping="Wrap" 
+                             Background="#1E1E1E" Foreground="#D4D4D4" FontFamily="Consolas"
+                             FontSize="12" Padding="10" BorderThickness="0"/>
+                </ScrollViewer>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
