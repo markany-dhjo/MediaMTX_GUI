@@ -7,7 +7,8 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <None Include="refs\**" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="refs\mediamtx.exe" CopyToOutputDirectory="PreserveNewest" Link="mediamtx.exe" />
+    <None Include="refs\ffmpeg.exe" CopyToOutputDirectory="PreserveNewest" Link="ffmpeg.exe" />
     <Resource Include="icon.ico" />
   </ItemGroup>
 </Project>
