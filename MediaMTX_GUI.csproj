@@ -4,4 +4,8 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="refs\**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>
