@@ -27,9 +27,9 @@
                                 BorderThickness="0" Cursor="Hand"/>
                     </Border>
                 </StackPanel>
-                <ScrollViewer Height="100" VerticalScrollBarVisibility="Auto" Margin="0,10,0,0">
-                    <ListBox Name="FileListBox" Background="Transparent" BorderThickness="0"/>
-                </ScrollViewer>
+                <ListBox Name="FileListBox" Background="Transparent" BorderThickness="0" 
+                         Height="100" Margin="0,10,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         ScrollViewer.CanContentScroll="False"/>
             </StackPanel>
         </Border>
         
@@ -98,9 +98,9 @@
                 <!-- RTSP URL Display -->
                 <StackPanel Grid.Column="1" Margin="30,0,0,0" Name="RtspUrlPanel">
                     <TextBlock Text="RTSP 스트리밍 주소" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
-                    <ScrollViewer Height="80" VerticalScrollBarVisibility="Auto">
-                        <ListBox Name="RtspUrlListBox" Background="#E8F5E8" BorderThickness="0"/>
-                    </ScrollViewer>
+                    <ListBox Name="RtspUrlListBox" Background="#E8F5E8" BorderThickness="0"
+                             Height="80" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             ScrollViewer.CanContentScroll="False"/>
                 </StackPanel>
             </Grid>
         </Border>
